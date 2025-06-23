@@ -33,12 +33,12 @@ function renderContacts(connections) {
   const container = document.getElementById('contacts');
 
   if (connections.length === 0) {
-    container.innerHTML = `<p class="text-gray-500">연락처가 없습니다.</p>`;
+    container.innerHTML = `<p class="text-gray-500">no contacts.</p>`;
     return;
   }
 
   const rows = connections.map(person => {
-    const name = person.names?.[0]?.displayName || '이름 없음';
+    const name = person.names?.[0]?.displayName || 'no name';
     const email = person.emailAddresses?.[0]?.value || '-';
     const phone = person.phoneNumbers?.[0]?.value || '-';
 
@@ -59,7 +59,7 @@ function renderContacts(connections) {
           <th class="text-left p-2">Email</th>
           <th class="text-left p-2">Number</th>
         </tr>
-      </thead>Add commentMore actions
+      </thead>
       <tbody>${rows}</tbody>
     </table>
   `;
