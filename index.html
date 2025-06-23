@@ -1,13 +1,26 @@
-<!-- index.html -->
-<script>
-    const clientId = '469241745606-obmslsb0mqlj56dr1012fg69k889032e.apps.googleusercontent.com';
-    const redirectUri = 'https://yohanchoi1234.github.io/google-contacts-viewer/contacts.html';
-    const scope = 'https://www.googleapis.com/auth/contacts.readonly';
+<!DOCTYPE html>
+<html lang="en">
 
-    function login() {
-        const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?response_type=token&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&prompt=consent`;
-        window.location.href = authUrl;
-    }
-</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login with Google</title>
+    <script>
+        const clientId = '469241745606-obmslsb0mqlj56dr1012fg69k889032e.apps.googleusercontent.com';
+        const redirectUri = 'https://yohanchoi1234.github.io/google-contacts-viewer/contacts.html';
+        const scope = 'https://www.googleapis.com/auth/contacts.readonly';
 
-<button onclick="login()">Login with Google</button>
+        function loginWithGoogle() {
+            const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?response_type=token&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&include_granted_scopes=true&prompt=consent`;
+            window.open(authUrl, '_blank');
+        }
+    </script>
+</head>
+
+<body style="text-align: center; margin-top: 100px;">
+    <button onclick="loginWithGoogle()"
+        style="padding: 10px 20px; font-size: 18px; background-color: #4285f4; color: white; border: none; border-radius: 4px;">Login
+        with Google</button>
+</body>
+
+</html>
