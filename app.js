@@ -3,26 +3,15 @@ const redirectUri = 'https://yohanchoi1234.github.io/google-contacts-viewer/';
 const scope = 'https://www.googleapis.com/auth/contacts.readonly';
 
 document.getElementById('login').addEventListener('click', () => {
-  const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?response_type=token&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&include_granted_scopes=true&prompt=consent`;
-
-  const width = 500, height = 600;
-  const left = (screen.width / 2) - (width / 2);
-  const top = (screen.height / 2) - (height / 2);
-
-  window.open(authUrl, 'GoogleLogin', `width=${width},height=${height},top=${top},left=${left}`);
+  const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?response_type=token&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&include_granted_scopes=true`;
+  window.location.href = authUrl;
 });
 
 window.onload = () => {
   if (window.location.hash.includes('access_token')) {
     const params = new URLSearchParams(window.location.hash.slice(1));
     const token = params.get('access_token');
-
-    if (window.opener) {
-      window.opener.postMessage({ token }, '*');
-      window.close();
-    } else {
-      fetchContacts(token);
-    }
+    fetchContacts(token);
   }
 };
 
@@ -44,17 +33,17 @@ function renderContacts(connections) {
   const container = document.getElementById('contacts');
 
   if (connections.length === 0) {
-    container.innerHTML = `<p class="text-gray-500">No contact found.</p>`;
+    container.innerHTML = `<p class="text-gray-500">연락처가 없습니다.</p>`;
     return;
   }
 
   const rows = connections.map(person => {
-    const name = person.names?.[0]?.displayName || 'No name provided';
+    const name = person.names?.[0]?.displayName || '이름 없음';
     const email = person.emailAddresses?.[0]?.value || '-';
     const phone = person.phoneNumbers?.[0]?.value || '-';
 
     return `
-      <tr class="border-b hover:bg-gray-50">
+      <tr class="border-b hover:bg-gray-100">
         <td class="p-2">${name}</td>
         <td class="p-2">${email}</td>
         <td class="p-2">${phone}</td>
@@ -68,9 +57,9 @@ function renderContacts(connections) {
         <tr>
           <th class="text-left p-2">Name</th>
           <th class="text-left p-2">Email</th>
-          <th class="text-left p-2">Phone</th>
+          <th class="text-left p-2">Number</th>
         </tr>
-      </thead>
+      </thead>Add commentMore actions
       <tbody>${rows}</tbody>
     </table>
   `;
