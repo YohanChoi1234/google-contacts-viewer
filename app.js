@@ -1,5 +1,5 @@
-const clientId = 'YOUR_CLIENT_ID_HERE';
-const redirectUri = '469241745606-obmslsb0mqlj56dr1012fg69k889032e.apps.googleusercontent.com';
+const clientId = '469241745606-obmslsb0mqlj56dr1012fg69k889032e.apps.googleusercontent.com';
+const redirectUri = 'https://yohanchoi1234.github.io/google-contacts-viewer/';
 const scope = 'https://www.googleapis.com/auth/contacts.readonly';
 
 document.getElementById('login').addEventListener('click', () => {
