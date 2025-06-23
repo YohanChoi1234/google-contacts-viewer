@@ -3,13 +3,9 @@ const redirectUri = 'https://yohanchoi1234.github.io/google-contacts-viewer/';
 const scope = 'https://www.googleapis.com/auth/contacts.readonly';
 
 document.getElementById('login').addEventListener('click', () => {
-  const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?response_type=token&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&include_granted_scopes=true`;
+  const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?response_type=token&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&include_granted_scopes=true&prompt=consent`;
 
-  const width = 500, height = 600;
-  const left = (screen.width / 2) - (width / 2);
-  const top = (screen.height / 2) - (height / 2);
-
-  window.open(authUrl, 'Google Login', `width=${width},height=${height},top=${top},left=${left}`);
+  window.location.href = authUrl;
 });
 
 window.onload = () => {
