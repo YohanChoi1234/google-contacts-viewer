@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- index.html -->
+<script>
+    const clientId = '469241745606-obmslsb0mqlj56dr1012fg69k889032e.apps.googleusercontent.com';
+    const redirectUri = 'https://yohanchoi1234.github.io/google-contacts-viewer/contacts.html';
+    const scope = 'https://www.googleapis.com/auth/contacts.readonly';
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Google Contacts</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+    function login() {
+        const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?response_type=token&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&prompt=consent`;
+        window.location.href = authUrl;
+    }
+</script>
 
-<body class="bg-gray-100 min-h-screen p-6">
-    <div class="max-w-2xl mx-auto bg-white p-6 shadow rounded">
-        <h1 class="text-2xl font-bold mb-4">Google Contacts</h1>
-        <button id="login" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-            Login to Google
-        </button>
-        <div id="contacts" class="mt-6"></div>
-    </div>
-
-    <script src="app.js"></script>
-</body>
-
-</html>
+<button onclick="login()">Login with Google</button>
