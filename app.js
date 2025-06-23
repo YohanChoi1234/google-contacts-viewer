@@ -1,10 +1,15 @@
-const clientId = '469241745606-obmslsb0mqlj56dr1012fg69k889032e.apps.googleusercontent.com';
-const redirectUri = 'https://yohanchoi1234.github.io/google-contacts-viewer/';
+const clientId = 'YOUR_CLIENT_ID_HERE';
+const redirectUri = '469241745606-obmslsb0mqlj56dr1012fg69k889032e.apps.googleusercontent.com';
 const scope = 'https://www.googleapis.com/auth/contacts.readonly';
 
 document.getElementById('login').addEventListener('click', () => {
   const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?response_type=token&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&include_granted_scopes=true`;
-  window.location.href = authUrl;
+
+  const width = 500, height = 600;
+  const left = (screen.width / 2) - (width / 2);
+  const top = (screen.height / 2) - (height / 2);
+
+  window.open(authUrl, 'Google Login', `width=${width},height=${height},top=${top},left=${left}`);
 });
 
 window.onload = () => {
@@ -43,7 +48,7 @@ function renderContacts(connections) {
     const phone = person.phoneNumbers?.[0]?.value || '-';
 
     return `
-      <tr class="border-b hover:bg-gray-100">
+      <tr class="border-b hover:bg-gray-50">
         <td class="p-2">${name}</td>
         <td class="p-2">${email}</td>
         <td class="p-2">${phone}</td>
@@ -57,11 +62,10 @@ function renderContacts(connections) {
         <tr>
           <th class="text-left p-2">Name</th>
           <th class="text-left p-2">Email</th>
-          <th class="text-left p-2">Number</th>
+          <th class="text-left p-2">Phone</th>
         </tr>
       </thead>
       <tbody>${rows}</tbody>
     </table>
   `;
 }
-
